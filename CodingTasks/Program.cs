@@ -10,7 +10,7 @@ namespace CodingTasks
     {
         static void Main(string[] args)
         {
-            MyListHelper.TestMyList();
+            //MyListTester.TestMyList();
         }        
     }
 }
