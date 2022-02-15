@@ -10,7 +10,8 @@ namespace CodingTasks
     {
         static void Main(string[] args)
         {
-            //MyListTester.TestMyList();
+            //Tester.TestMyList();
+            //Tester.TestMyStack();
         }        
     }
 }
