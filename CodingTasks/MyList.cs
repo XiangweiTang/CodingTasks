@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodingTasks
 {
+
     /// <summary>
     /// This class is a custom data structure of implenmenting List with Array.
     /// </summary>
@@ -14,10 +15,24 @@ namespace CodingTasks
         /// <summary>
         /// Initialize the custom list.
         /// </summary>
-        public MyList()
+        public MyList(int arraySize)
         {
             // You may add your initializer here.
+            InternalArray = new int[arraySize];
+            Length = 0;
         }
+
+        /// <summary>
+        /// Initialize the custom list. If no argument is specified, use 16 as default size.
+        /// </summary>
+        public MyList() : this(16)
+        {
+
+        }
+        /// <summary>
+        /// This array is the place where the values are stored.
+        /// </summary>
+        private int[] InternalArray = new int[0];
         /// <summary>
         /// The lengthe of the "List". 
         /// i.e.: 
@@ -35,7 +50,11 @@ namespace CodingTasks
         /// <returns>The {index}th element.</returns>
         public int ElementAt(int index)
         {
-            throw new NotImplementedException();
+            if (index < 0)
+                throw new Exception("Index less than 0.");
+            if (index >= Length)
+                throw new Exception("Index out of boundary.");
+            return InternalArray[index];
         }
 
         /// <summary>
@@ -45,7 +64,10 @@ namespace CodingTasks
         /// <param name="element">The element to be added.</param>
         public void Add(int element)
         {
-            throw new NotImplementedException();
+            if (Length >= InternalArray.Length)
+                throw new Exception("No more elements.");
+            InternalArray[Length] = element;
+            Length++;
         }
 
         /// <summary>
@@ -56,7 +78,18 @@ namespace CodingTasks
         /// <param name="index">The index of the inserted element.</param>
         public void InsertAt(int element, int index)
         {
-            throw new NotImplementedException();
+            if (Length >= InternalArray.Length)
+                throw new Exception("No more elements.");
+            if (index < 0)
+                throw new Exception("Index less than 0.");
+            if (index > Length)
+                throw new Exception("Index out of boundary.");
+
+            for (int i = Length - 1; i >= index; i--)
+                InternalArray[i + 1] = InternalArray[i];
+
+            InternalArray[index] = element;
+            Length++;
         }
 
         /// <summary>
@@ -66,7 +99,16 @@ namespace CodingTasks
         /// <param name="index">The index to be removed.</param>
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if (Length == 0)
+                throw new Exception("List length is 0 already.");
+            if (index < 0)
+                throw new Exception("Index less than 0.");
+            if (index >= Length)
+                throw new Exception("Index out of boundary.");
+
+            for (int i = index; i < Length - 1; i++)
+                InternalArray[i] = InternalArray[i + 1];
+            Length--;
         }
     }
 }
