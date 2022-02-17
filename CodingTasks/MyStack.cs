@@ -8,12 +8,19 @@ namespace CodingTasks
 {
     class MyStack
     {
+        int[] InternalArray = new int[0];        
         /// <summary>
         /// Initialize the custom stack.
         /// </summary>
-        public MyStack()
+        public MyStack():this(16)
         {
-            // You may add your initializer here.
+            
+        }
+
+        public MyStack(int capacity)
+        {
+            InternalArray = new int[capacity];
+            Count = 0;
         }
 
         /// <summary>
@@ -28,7 +35,11 @@ namespace CodingTasks
         /// <returns>The top element</returns>
         public int Peak()
         {
-            throw new NotImplementedException();
+            if (Count == 0)
+                throw new Exception("Stack underflow.");
+            if (Count < 0 || Count > InternalArray.Length)
+                throw new Exception("Stack broken.");
+            return InternalArray[Count - 1];
         }
 
         /// <summary>
@@ -38,7 +49,9 @@ namespace CodingTasks
         /// <returns>The top element</returns>
         public int Pop()
         {
-            throw new NotImplementedException();
+            int peak = Peak();
+            Count--;
+            return peak;
         }
 
         /// <summary>
@@ -48,7 +61,12 @@ namespace CodingTasks
         /// <param name="value">The element to be pushed.</param>
         public void Push(int value)
         {
-            throw new NotImplementedException();
+            if (Count == InternalArray.Length)
+                throw new Exception("Stack overflow.");
+            if (Count > InternalArray.Length)
+                throw new Exception("Stack broken.");
+            InternalArray[Count] = value;
+            Count++;
         }
     }
 }
