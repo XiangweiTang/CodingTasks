@@ -36,6 +36,19 @@ namespace CodingTasks
             i = stack.Peak();   //  top-{9,8,5}-bottom, i=9
         }
 
+        public static void TestMyQueue()
+        {
+            MyQueue queue = new MyQueue();
+            //int i = queue.Dequeue();    //  Invalid operation, since there is no element inside queue.
+            queue.Enqueue(5);   //  head-{5}-tail
+            queue.Enqueue(8);   //  head-{5, 8}-tail
+            queue.Enqueue(23);  //  head-{5, 8, 23}-tail
+            int i = queue.Peak();   //  head-{5, 8, 23}-tail, i=5
+            i = queue.Dequeue();    //  head-{8, 23}-tail, i=5
+            queue.Enqueue(9);   //  head-{8, 23, 9}-tail
+            i = queue.Peak();    //  head-{8, 23, 9}-tail, i=8
+        }
+
         public static void TestSentenceCount(string[] args)
         {
             if (args.Length < 4)
