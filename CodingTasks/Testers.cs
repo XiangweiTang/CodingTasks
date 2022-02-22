@@ -35,5 +35,35 @@ namespace CodingTasks
             stack.Push(9);      //  top-{9,8,5}-bottom
             i = stack.Peak();   //  top-{9,8,5}-bottom, i=9
         }
+
+        public static void TestSentenceCount(string[] args)
+        {
+            if (args.Length < 4)
+                throw new Exception("Invalid arguments for sentence count!");
+
+            /*
+             * A valid argument could be:
+             *  \\PATH\OF\COUNT true false *.txt
+             *  
+             *  This is only a simple version, in practice we have more complicate inputs.
+             */
+            string path = args[0];
+            bool countWord = bool.Parse(args[1]);
+            bool countChar = bool.Parse(args[2]);
+            string pattern = args[3];
+
+            SentenceCount sc = new SentenceCount();
+            sc.CountChar = countChar;
+            sc.CountWord = countWord;
+            sc.Pattern = pattern;
+
+            sc.Count(path);
+
+            Console.WriteLine($"Sentence count: {sc.SentCount}");
+            if (countWord)
+                Console.WriteLine($"Word count: {sc.WordCount}");
+            if (countChar)
+                Console.WriteLine($"Char count: {sc.CharCount}");
+        }
     }    
 }

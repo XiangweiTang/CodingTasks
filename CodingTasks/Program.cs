@@ -12,6 +12,7 @@ namespace CodingTasks
         {
             //Tester.TestMyList();
             //Tester.TestMyStack();
+            //Tester.TestSentenceCount(args);
         }        
     }
 }
